@@ -1,17 +1,23 @@
 let 바디 = document.body;
-let 숫자후보 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-let 숫자배열 = [];
+let 숫자후보;
+let 숫자배열;
 
-for (let i = 0; i < 4; i += 1) {
-  let 뽑은숫자 = 숫자후보.splice(Math.floor(Math.random() * (9 - i)), 1)[0];
-  숫자배열.push(뽑은숫자);
+function 숫자뽑기() {
+  숫자후보 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  숫자배열 = [];
+  for (let i = 0; i < 4; i += 1) {
+    let 뽑은숫자 = 숫자후보.splice(Math.floor(Math.random() * (9 - i)), 1)[0];
+    숫자배열.push(뽑은숫자);
+  }
 }
 /* splice(위치, 개수)는 원하는 위치부터 원하는 개수의 값을 뽑아준다.
-여기서 주의할 점은 배열의 위치는 0부터 세기 때문에 1 ~ 8 사이의 값을 필요로하고
+여기서 주의할 점은 배열의 위치는 0부터 세기 때문에 0 ~ 8 사이의 값을 필요로하고
 하나의 값을 뽑으면 원래 배열에서 그 값이 사라지기 때문에 범위역시 1씩 줄여줘야한다.
 그렇지않으면 undefined를 뽑아내는 에러 발생.
 마지막으로 뽑아낸 값은 배열로 나타나기때문에 [0]을 붙여 첫번째 값을 뽑아줘야한다.
 */
+
+숫자뽑기();
 console.log(숫자배열);
 
 let 결과 = document.createElement("h1");
@@ -34,15 +40,9 @@ addEventListener("submit", function 비동기(이벤트) {
     결과.textContent = "홈런입니다!";
     입력창.value = "";
     입력창.focus();
-
-    숫자후보 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    숫자배열 = [];
-    for (let i = 0; i < 4; i += 1) {
-      let 뽑은숫자 = 숫자후보.splice(Math.floor(Math.random() * (9 - i)), 1)[0];
-      숫자배열.push(뽑은숫자);
-
-      틀린횟수 = 0;
-    }
+    숫자뽑기();
+    console.log(숫자배열);
+    틀린횟수 = 0;
   } else {
     //답이 틀리면
     let 답배열 = 답.split("");
@@ -57,10 +57,7 @@ addEventListener("submit", function 비동기(이벤트) {
         "실패했습니다. 답은" + 숫자배열.join("") + " 였습니다.";
       입력창.value = "";
       입력창.focus();
-      숫자후보 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-      숫자배열 = [];
-      뽑은숫자 = 숫자후보.splice(Math.floor(Math.random() * (9 - i)), 1)[0];
-      숫자배열.push(뽑은숫자);
+      숫자뽑기();
       틀린횟수 = 0;
     } else {
       //5번 미만으로 틀린 경우
@@ -73,7 +70,7 @@ addEventListener("submit", function 비동기(이벤트) {
         숫자배열.push(뽑은숫자);
       }
 
-      for (let i = 0; i < 3; i += 1) {
+      for (let i = 0; i < 4; i += 1) {
         if (Number(답배열[i]) === 숫자배열[i]) {
           //같은자리의 같은 숫자인지 확인
           스트라이크++;
