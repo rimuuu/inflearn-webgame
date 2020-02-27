@@ -2,6 +2,7 @@ let 바디 = document.body;
 let 단어 = document.createElement("div");
 //단어라는 div를 생성
 단어.textContent = "국밥";
+//생성된 div혹은 텍스트상자안에 문자를 입력하는방법
 document.body.append(단어);
 /*태그를 생성할때마다 태그를 기억만하지말고 화면에도 표시해줘. 
 바디안에 추가해줘라고 명령해야함 */
