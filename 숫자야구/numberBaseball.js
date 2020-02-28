@@ -49,6 +49,7 @@ addEventListener("submit", function 비동기(이벤트) {
     let 스트라이크 = 0;
     let 볼 = 0;
     틀린횟수 += 1;
+    console.log(답);
     console.log("현재 틀린횟수는" + 틀린횟수 + "입니다.");
 
     if (틀린횟수 > 4) {
@@ -61,13 +62,7 @@ addEventListener("submit", function 비동기(이벤트) {
       틀린횟수 = 0;
     } else {
       //5번 미만으로 틀린 경우
-
-      for (let i = 0; i < 4; i += 1) {
-        let 뽑은숫자 = 숫자후보.splice(
-          Math.floor(Math.random() * (9 - i)),
-          1
-        )[0];
-        숫자배열.push(뽑은숫자);
+      숫자뽑기();
       }
 
       for (let i = 0; i < 4; i += 1) {
